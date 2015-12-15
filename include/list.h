@@ -26,6 +26,8 @@ public:
 	void DeleteList();//очистить список
 	void GoNext();//перейти к след звену
 	void Reset();//вернуть в начало
+	T GetCurrData(int pos);
+
 };
 
 template <class T>
@@ -60,7 +62,6 @@ void List<T>::Push (T data)
 
 	++length;
 }
-
 template <class T>
 void List<T>::DeleteCurr ()
 {
