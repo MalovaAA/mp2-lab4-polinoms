@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -8,12 +9,14 @@ public:
 	double coef;
 	int power;
 
-	Monom(double coef = 0, int power = -1){
+	Monom(double coef = 0, int power = -1)
+	{
 	  this->coef = coef;
 	  this->power = power;
 	 }
 
-	Monom(const Monom& m){
+	Monom(const Monom& m)
+	{
 	  this->coef = m.coef;
 	  this->power = m.power;
 	 }
@@ -25,6 +28,10 @@ public:
 
 	  return false;
     }
+	bool operator!=(const Monom &m)
+	{
+		return !(power == m.power);
+	}
 
 	bool operator<(const Monom &m)
     {

@@ -53,7 +53,7 @@ void List<T>::Push (T data)
 	{
 		prevNode = currNode;                   
 		currNode = currNode->GetNextNode();   
-	};
+	}
 		
 	newNode->SetNextNode(currNode);  
 	prevNode->SetNextNode(newNode); 
@@ -73,7 +73,7 @@ void List<T>::DeleteCurr ()
 		currNode = prevNode->GetNextNode();
             
 		--length;
-	};
+	}
 }
 
 template <class T>
@@ -100,10 +100,10 @@ Node<T>* List<T>::Search (T elem)
 	   {
 		  prevNode = currNode;
 		  currNode = currNode->GetNextNode();
-	   };
+	   }
 	
 	   return currNode;
-	};
+	}
 }
 
 template <class T>
@@ -129,7 +129,7 @@ T List<T>::GetCurrData(int pos)
 	{
 		prevNode = currNode;                   
 		currNode = currNode->GetNextNode();    
-	};
+	}
 	
 	return currNode->Get();
 }
@@ -144,7 +144,7 @@ void List<T>::DeleteList()
 		prevNode = currNode; 
 		currNode = currNode->GetNextNode();   
 		delete prevNode;
-	};
+	}
 
 	delete currNode;
 	length = 0;

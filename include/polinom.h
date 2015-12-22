@@ -2,7 +2,7 @@
 // поддерживает операции Печать, Вставка монома, Удаление монома,  
 // Поиск монома, Сложение полиномов(слияние упорядоченных списков), 
 // Умножение полиномов
-
+#pragma once
 #include "monom.h"
 #include <iostream>
 #include "List.h"
@@ -13,13 +13,10 @@ class Polinom: public List<Monom>{
 
 public:
 	 Polinom();
-	 Polinom(int monoms[][2], int size);
 	 Polinom(Polinom& p);
-
 	 Polinom& operator+=(Polinom &q);
 	 Polinom& operator-=(Polinom &q);
 	 Polinom& operator=(Polinom &q);
-
 	 Polinom& MultiNum(double num);
 
 };
@@ -32,21 +29,6 @@ Polinom::Polinom()
 	headNode->SetNextNode(headNode);
 }
 
-Polinom::Polinom(int monoms[][2], int size)
-{
-	Monom temp(0, -1);
-	headNode = new Node<Monom>;
-	headNode->Set (temp);
-	headNode->SetNextNode(headNode);
-
-	for (int i = 0; i < size; i++){
-		temp.coef = monoms[i][0];
-		temp.power = monoms[i][1];
-		Push(temp);
-	};
-	
-}
-
 Polinom::Polinom(Polinom& p)
 {
 	Monom temp(0, -1);
@@ -54,7 +36,8 @@ Polinom::Polinom(Polinom& p)
 	headNode->Set (temp);
 	headNode->SetNextNode(headNode);
 
-	for (int i = 0; i < p.GetLength(); i++){
+	for (int i = 0; i < p.GetLength(); i++)
+	{
 
 		Push(p.GetCurrData(i));
 	};
@@ -121,7 +104,6 @@ Polinom& Polinom::operator=(Polinom &q)
 
 	return *this;
 }
- 
 Polinom& Polinom::MultiNum(double num)
 {
 	currNode = headNode->GetNextNode();
@@ -134,3 +116,4 @@ Polinom& Polinom::MultiNum(double num)
 
 	return *this;
 }
+ 
