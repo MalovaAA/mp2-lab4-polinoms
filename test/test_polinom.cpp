@@ -13,8 +13,6 @@ TEST(List, can_push)
 	int a = 3;
 	list.Push(a);
 	cout<<list.GetCurrData(0)<<endl;
-	//cout<<list.GetCurrData(1)<<endl;
-	//cout<<list.GetCurrData(2)<<endl;
 	EXPECT_EQ(3,list.GetCurrData(0));
 }
 TEST(List, can_push_unsort_element)
@@ -38,17 +36,53 @@ TEST(List, can_delete_list)
 	list.DeleteList();
 	EXPECT_EQ(0,list.GetLength());
 }
-TEST(List, can_delete_element)
+TEST(Polinom, can_add_polinoms)
 {
-	List<int> list;
-	list.Push(3);
-	list.Push(10);
-	list.Push(2);
-	list.Push(6);
-	list.DeleteCurr();
-	cout<<list.GetCurrData(0)<<endl;
-	cout<<list.GetCurrData(1)<<endl;
-	cout<<list.GetCurrData(2)<<endl;
-	EXPECT_EQ(0,list.GetLength());
+	Polinom p1;
+	Polinom p2;
+	
+	Monom m1(2,200);
+	Monom m2(9,100);
+	p1.Push(Monom(1,100));
+	p1.Push(Monom(1,200));
+	p2.Push(Monom(8,100));
+	p2.Push(Monom(1,200));
+	p1+=p2;
+	EXPECT_EQ(m1.coef,p1.GetCurrData(0).coef);
+	EXPECT_EQ(m1.power,p1.GetCurrData(0).power);
+	EXPECT_EQ(m2.coef,p1.GetCurrData(1).coef);
+	EXPECT_EQ(m2.power,p1.GetCurrData(1).power);
 }
-
+TEST(Polinom, can_subtract_polinoms)
+{
+	Polinom p1;
+	Polinom p2;
+	Monom m2(-7,100);
+	p1.Push(Monom(1,100));
+	p1.Push(Monom(1,200));
+	p2.Push(Monom(8,100));
+	p2.Push(Monom(1,200));
+	p1-=p2;
+	EXPECT_EQ(m2.coef,p1.GetCurrData(0).coef);
+	EXPECT_EQ(m2.power,p1.GetCurrData(0).power);
+}
+TEST(Polinom, can_subtract_polinoms2)
+{
+	Polinom p1;
+	Polinom p2;
+	Monom m1(-5,200);
+	Monom m2(-2,101);
+	Monom m3(2,100);
+	p1.Push(Monom(6,101));
+	p1.Push(Monom(3,100));
+	p2.Push(Monom(8,101));
+	p2.Push(Monom(1,100));
+	p2.Push(Monom(5,200));
+	p1-=p2;
+	EXPECT_EQ(m1.coef,p1.GetCurrData(0).coef);
+	EXPECT_EQ(m1.power,p1.GetCurrData(0).power);
+	EXPECT_EQ(m2.coef,p1.GetCurrData(1).coef);
+	EXPECT_EQ(m2.power,p1.GetCurrData(1).power);
+	EXPECT_EQ(m3.coef,p1.GetCurrData(2).coef);
+	EXPECT_EQ(m3.power,p1.GetCurrData(2).power);
+}

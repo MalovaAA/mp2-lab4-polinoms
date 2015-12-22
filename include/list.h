@@ -58,7 +58,7 @@ void List<T>::Push (T data)
 	newNode->SetNextNode(currNode);  
 	prevNode->SetNextNode(newNode); 
 
-	prevNode = prevNode->GetNextNode();
+	//prevNode = prevNode->GetNextNode();
 
 	++length;
 }
